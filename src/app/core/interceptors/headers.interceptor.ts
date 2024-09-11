@@ -1,0 +1,22 @@
+
+import { isPlatformBrowser } from '@angular/common';
+import { HttpInterceptorFn } from '@angular/common/http';
+import { inject, PLATFORM_ID } from '@angular/core';
+
+export const headersInterceptor: HttpInterceptorFn = (req, next) => {
+const _PLATFORM_ID = inject(PLATFORM_ID)
+
+if(isPlatformBrowser(_PLATFORM_ID)){
+  const userToken = localStorage.getItem('userToken');
+   if (userToken && (req.url.includes('cart') || req.url.includes('wishlist') || req.url.includes('orders') || req.url.includes('home'))) {
+  req = req.clone({
+        setHeaders: { token : localStorage.getItem('userToken')! }
+      })
+    }
+  
+    }
+
+  return next(req);
+};
+
+

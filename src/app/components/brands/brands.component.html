@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row g-4">
+@for (b of allBrands; track b._id) {
+    <div class="col-md-3">
+        <div class=" card border product cr " data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="displaySpecificPrand(b._id)">
+            <div class="card-img">
+                <img class="w-100" [src]="b.image" [alt]="b.slug">
+            </div>
+            <div class="text-center p-3 ">
+               <h5 class="h6  "> {{b.name}}</h5>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- ============ -->
+
+
+<!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+@if (Brand) {
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header ">
+          <i class="fa-solid fa-x ms-auto fs-4 cr text-secondary" data-bs-dismiss="modal"></i>
+        </div>
+          
+
+        
+        <div class="modal-body">
+         <div class="row">
+            <div class="col-md-6">
+                <div class="text-main h2 fw-bold ms-4 mt-4">{{b.name}}</div>
+                <p class=" ms-4">{{b.slug}}</p>
+            </div>
+            <div class="col-md-6">
+              <img class="w-100" [src]="b.image" [alt]="b.slug">
+            </div>
+         </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+}
+    <!-- ============ -->
+}
+    </div>
+</div>
